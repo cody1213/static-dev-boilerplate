@@ -32,17 +32,15 @@ You can replace the contents of the www folder but there's a basic app structure
 
 		bower install	
 
-###Start dev server### 
+###Start dev server###
 7. You can just run app.js file with Node (or use the server script in the bin folder)
 
-    node app.js
+		node app.js
 
-  or
+	or
     
-    sh bin/server.sh
+		sh bin/server.sh
 
-8. Visit localhost:3000 in your browser
+8. Visit [http://localhost:3000](http://localhost:3000) in your browser
 
-And that's it.  Put static files in the www folder and make any API placeholders in the routes.js file.
-
-
+And that's it.  Put static files in the www folder and add any API placeholders in the routes.js file.
