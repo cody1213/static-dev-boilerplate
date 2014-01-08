@@ -1,0 +1,23 @@
+{
+  "name": "A new project",
+  "version": "0.0.0",
+  "authors": [
+    "Cody Brumfield <cody_brumfield@hotmail.com>"
+  ],
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.10.x",
+    "modernizr": "latest",
+    "bootstrap": "latest",
+    "underscore": "latest",
+    "font-awesome": "latest",
+    "requirejs": "latest"
+  }
+}
