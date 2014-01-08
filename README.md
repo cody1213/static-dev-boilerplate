@@ -36,6 +36,7 @@ You can replace the contents of the www folder but there's a basic app structure
 7. You can just run app.js file with Node (or use the server script in the bin folder)
 
     node app.js
+
   or
     
     sh bin/server.sh
