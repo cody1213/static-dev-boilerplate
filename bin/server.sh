@@ -1,0 +1,1 @@
+supervisor $1 -w ../ -e js,less ../app.js
