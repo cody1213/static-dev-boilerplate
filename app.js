@@ -11,10 +11,10 @@ var app = express();
 //define port
 var port = process.env.PORT || 3000;
 
-//let web server send as gzip
+//let web server send as gzip to supporting browsers
 app.use(express.compress());
 
-//Add any special API routes to the routes.js file
+//Add any special routes to the routes.js file 
 require('./routes')(app);
 
 //Serve any files in the www folder as static content

@@ -2,6 +2,17 @@ Development Boilerplate
 ============
 A node.js-based dev server and starter boilerplate for client projects that will eventually be on Apache. Allows for simple API routes to emulate a server-side API and serves up the www folder as static files. I made this to start development locally without the need for XAMPP or a dev server.
 
+###Requirements###
+NodeJS, obviously.  You should also install the following globally:
+
+1. Bower (for installing web packages)
+
+    npm install -g bower
+    
+2. Supervisor (for running the web server)
+
+    npm install -g supervisor
+
 ###Installation###
 
 1. Clone the repo
@@ -39,7 +50,7 @@ You can replace the contents of the www folder but there's a basic app structure
 
 	or
     
-		sh bin/server.sh
+		sh server.sh
 
 8. Visit [http://localhost:3000](http://localhost:3000) in your browser
 
