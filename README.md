@@ -54,4 +54,4 @@ You can replace the contents of the www folder but there's a basic app structure
 
 8. Visit [http://localhost:3000](http://localhost:3000) in your browser
 
-And that's it.  Put static files in the www folder and add any API placeholders in the routes.js file.
+And that's it.  Put static files in the www folder and add any API placeholders in the routes.js file.  If you like jade or less, you can use those folders and they will compile automatically.  (If not, remove those folders and comment out the grunt lines in app.js.)

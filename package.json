@@ -1,12 +1,17 @@
 {
-  "name" : "TestEnvironment",
-  "version" : "0.0.1",
-  "dependencies" : {
-    "express" : "3.x",
-    "less": "1.3.x"
+  "name": "TestEnvironment",
+  "version": "0.2.0",
+  "dependencies": {
+    "express": "3.x"
   },
   "devDependencies": {
     "supervisor": "*",
-    "bower": "*"
+    "bower": "*",
+    "jade": "*",
+    "grunt": "~0.4.2",
+    "grunt-contrib-jade": "*",
+    "grunt-contrib-watch": "*",
+    "grunt-contrib-less": "*",
+    "less": "1.3.x"
   }
 }
