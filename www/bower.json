@@ -13,7 +13,7 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "1.10.x",
+    "jquery": "latest",
     "modernizr": "latest",
     "bootstrap": "latest",
     "underscore": "latest",

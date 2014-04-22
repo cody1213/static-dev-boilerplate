@@ -8,24 +8,29 @@ The only definite requirement is Node.js.  You might also want to install the fo
 1. Bower (for installing web packages)
 
     npm install -g bower
-    
+
 2. Grunt, jade, and less (for the compile script)
 
     npm install -g grunt-cli less jade
-    
+
+3. autoenv and nvm for managing the version of Node in use.
+
+    https://github.com/creationix/nvm
+    https://github.com/kennethreitz/autoenv
+
 
 ###Installation###
 
 1. Clone the repo
-	
+
 		git clone https://github.com/cody1213/static-dev-boilerplate.git
-		
+
 2. Rename the folder
-		
+
 		mv static-dev-boilerplate project-name/
 
 3. Navigate to the www directory
-		
+
 		cd project-name/
 
 4. Install node packages
@@ -34,15 +39,15 @@ The only definite requirement is Node.js.  You might also want to install the fo
 
 
 ###Optional###
-You can just replace the contents of the www folder but there's a basic app structure inside you can use.  To use it, follow these steps: 
+You can just replace the contents of the www folder but there's a basic app structure inside you can use.  To use it, follow these steps:
 
 5. Navigate to the www directory
-		
+
 		cd www/
 
 6. Modify the bower.json file and add any JavaScript libraries you intend to use.  The .bowerrc file defines the location the libraries will be installed. Change that if you don't want them in assets/js/libs.  Then run:
 
-		bower install	
+		bower install
 
 ###Start dev server###
 
