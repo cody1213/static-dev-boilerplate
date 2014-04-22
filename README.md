@@ -13,7 +13,7 @@ The only definite requirement is Node.js.  You might also want to install the fo
 
     npm install -g grunt-cli less jade
 
-3. autoenv and nvm for managing the version of Node in use.
+3. I use autoenv and nvm to manage the version of Node in use for different projects.
 
     https://github.com/creationix/nvm
     https://github.com/kennethreitz/autoenv
