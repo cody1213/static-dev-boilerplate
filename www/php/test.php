@@ -7,14 +7,25 @@
   <body>
     <form method="post" action="?test456=success">
       <input type="text" name="test123" value="success">
-      <input type="submit">
+      <input type="submit" name="submit" value="submit">
     </form>
-<pre>
 <?php
   echo "Real GET: ".$_GET['test456'];
   echo "<br />";
   echo "Faux POST: ".$_POST['test123'];
 
+?>
+<pre>
+GET
+<?php
+print_r($_GET);
+?>
+</pre>
+<br /<br />
+<pre>
+POST
+<?php
+print_r($_POST);
 ?>
 </pre>
   </body>
