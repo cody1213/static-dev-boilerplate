@@ -1,9 +1,9 @@
-Development Boilerplate
+Node PHP Development Environment 
 ============
-A node.js-based dev server and starter boilerplate for client projects that will eventually be on Apache. Allows for simple API routes to emulate a server-side API and serves up the www folder as static files. I made this to start development locally without the need for XAMPP or a dev server.
+A node.js-based dev server and starter boilerplate for client projects that will eventually be on Apache/Nginx. Serves up simple PHP files (instructions and explanation below), compiles less and jade, and generally makes a neat little www/ folder I can pass on to clients.
 
 ###Requirements###
-The only definite requirement is Node.js.  You might also want to install the following globally:
+You might also want to install the following globally:
 
 1. Bower (for installing web packages)
 
@@ -13,10 +13,20 @@ The only definite requirement is Node.js.  You might also want to install the fo
 
     npm install -g grunt-cli less jade
 
-3. I use autoenv and nvm to manage the version of Node in use for different projects.
+3. I use autoenv and nvm to manage the version of Node in use for different projects. More info at:
 
     https://github.com/creationix/nvm
     https://github.com/kennethreitz/autoenv
+
+4. For PHP, you'll need PHP installed locally.  Make sure you can run commands with just 
+
+    php-cgi /path/to/script.php
+
+It works by just running the script from the command line and getting the stdout.  It supports GET totally and POST with a bit of a hack.  It basically passes a GET variable with all the POST data and inserts a line at the top of the PHP script:
+
+    <?php $_POST = $_GET['_POST']; ?>   
+
+By default, only scripts in the www/php/ folder with a .php extension will be treated as PHP scripts. 
 
 
 ###Installation###
@@ -39,7 +49,7 @@ The only definite requirement is Node.js.  You might also want to install the fo
 
 
 ###Optional###
-You can just replace the contents of the www folder but there's a basic app structure inside you can use.  To use it, follow these steps:
+You can just replace the contents of the www folder if you just want static files but there's a basic app structure inside you can use.  To use it, follow these steps:
 
 5. Navigate to the www directory
 
@@ -61,4 +71,4 @@ You can just replace the contents of the www folder but there's a basic app stru
 
 9. Visit [http://localhost:4000](http://localhost:4000) in your browser
 
-And that's it.  Put static files in the www folder and add any API placeholders in the routes.js file.
+And that's it.  If you make any changes to any file that isn't .jade, .less, or in the www folder, you'll need to restart the app.
