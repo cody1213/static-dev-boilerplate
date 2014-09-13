@@ -14,10 +14,9 @@
   ],
   "dependencies": {
     "jquery": "latest",
-    "modernizr": "latest",
     "bootstrap": "latest",
-    "underscore": "latest",
     "font-awesome": "latest",
-    "requirejs": "latest"
+    "requirejs": "latest",
+    "require-css": "~0.1.5"
   }
 }
