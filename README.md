@@ -1,6 +1,6 @@
-Node PHP Development Environment 
+Node Quick Dev Boilerplate 
 ============
-A node.js-based dev server and starter boilerplate for client projects that will eventually be on Apache/Nginx. Serves up simple PHP files (instructions and explanation below), compiles less and jade, and generally makes a neat little www/ folder I can pass on to clients.
+A node.js-based dev server and starter boilerplate for fast development of client projects. Compiles from less and jade and generally makes a neat little www/ folder I can pass on to clients.
 
 ###Requirements###
 You might also want to install the following globally:
@@ -13,21 +13,10 @@ You might also want to install the following globally:
 
     npm install -g grunt-cli less jade
 
-3. I use autoenv and nvm to manage the version of Node in use for different projects. More info at:
+3. (optional) I use autoenv and nvm to manage the version of Node in use for different projects. More info at:
 
     https://github.com/creationix/nvm
     https://github.com/kennethreitz/autoenv
-
-4. For PHP, you'll need PHP installed locally.  Make sure you can run php scripts with just 
-
-    php-cgi /path/to/script.php
-
-It works by just running the script from the command line and getting the stdout.  It also supports GET variables and, with a bit of a hack, POST variables.  Since passing POST variables through the command line is a bear, It basically passes a GET variable with all the POST values and inserts a line at the top of the PHP script:
-
-    <?php $_POST = $_GET['_POST']; ?>   
-
-By default, only scripts in the www/php/ folder with a .php extension will be treated as PHP scripts. That can be modified in the routes.js file.  This obviously isn't meant for complex, PHP-based applications but it works fine for early development.
-
 
 ###Installation###
 
