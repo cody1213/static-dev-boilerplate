@@ -15,5 +15,9 @@
     "grunt-contrib-watch": "*",
     "grunt-contrib-less": "*",
     "less": "*"
+  },
+  "scripts": {
+    "postinstall": "./node_modules/bower/bin/bower install"
   }
+
 }

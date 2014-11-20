@@ -13,10 +13,5 @@
     "tests"
   ],
   "dependencies": {
-    "jquery": "latest",
-    "bootstrap": "latest",
-    "font-awesome": "latest",
-    "requirejs": "latest",
-    "require-css": "~0.1.5"
   }
 }
