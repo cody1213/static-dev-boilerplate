@@ -17,7 +17,8 @@
     "less": "*"
   },
   "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install"
+    "postinstall": "./node_modules/bower/bin/bower install",
+    "start":"node app.js"
   }
 
 }
