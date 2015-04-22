@@ -30,6 +30,15 @@ module.exports = function(grunt) {
                 }
             }
         },
+        autoprefixer: {
+          options: {
+            // Task-specific options go here.
+          },
+          prefixed: {
+            src: 'www/assets/styles/css/style.css',
+            dest: 'www/assets/styles/css/style-prefixed.css'
+          },
+        },
         watch: {
             jade: {
                 files: ['jade/**/*.jade'],
@@ -38,6 +47,10 @@ module.exports = function(grunt) {
             less: {
                 files: ['www/assets/styles/less/*.less', 'less/*.less'],
                 tasks: ['less']
+            },
+            styles: {
+              files: ['www/assets/styles/css/style.css'],
+              tasks: ['autoprefixer']
             }
         }
     });
@@ -45,6 +58,7 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-watch');
     grunt.loadNpmTasks('grunt-contrib-jade');
     grunt.loadNpmTasks('grunt-contrib-less');
+    grunt.loadNpmTasks('grunt-autoprefixer');
     grunt.registerTask('default', 'watch');
 
 };
