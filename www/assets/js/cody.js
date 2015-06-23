@@ -1,7 +1,7 @@
 //These are some functions I use all the time.  
 
 var Cody = {
-  id2String = function(obj) {
+  id2String: function(obj) {
     return obj && obj._id?obj._id.toString():false;
   },
   getOrdinal:  function(n) {
