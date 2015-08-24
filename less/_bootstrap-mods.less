@@ -1,10 +1,9 @@
-@import "_mixins.less";
-
 .container-full {
   margin: 0 auto;
   width: 100%;
   text-align: center;
 }
+
 * {
   outline: 0 !important;
 }
@@ -265,7 +264,6 @@
     th.visible-xl, td.visible-xl {
         display: table-cell !important;
     }
-
     .visible-xl-block {
         display: block !important;
     }
@@ -281,36 +279,4 @@
     .hidden-xl {
         display: none !important;
     }
-}
-
-
-
-#map {
-  img {
-    margin: 0 auto;
-    width: 100%;
-  }
-  .glow {
-    position: absolute;
-    height: 36px;
-    width: 36px;
-    &#glow1 {
-      top: 20px;
-      right: 50%;  
-    }
-  }
-  .star {
-    position: absolute;
-    height: 12px;
-    width: 12px;
-    background-color: yellow;
-    border-radius: 50%;
-    &:hover {
-      box-shadow: 0 0 21px 6px #ffffff;
-    }
-    &.alaska {
-      left: 17%;
-      top: 80%;
-    }
-  }
 }

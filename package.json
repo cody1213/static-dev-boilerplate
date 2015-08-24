@@ -21,5 +21,4 @@
     "postinstall": "./node_modules/bower/bin/bower install",
     "start":"node app.js"
   }
-
 }
