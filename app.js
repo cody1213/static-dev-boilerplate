@@ -1,4 +1,5 @@
 var express    = require('express')
+, fs           = require('fs')
 , bodyParser   = require('body-parser')
 , compression  = require('compression')
 , app          = express()
@@ -13,13 +14,14 @@ var express    = require('express')
 , source = require('vinyl-source-stream')
 , buffer = require('vinyl-buffer')
 , sourcemaps = require('gulp-sourcemaps')
-, autoprefixer = require('gulp-autoprefixer');
+, autoprefixer = require('gulp-autoprefixer')
 
 //to make this work with node v10
 require('es6-promise').polyfill();
 
 
 var jadeInput = './src/jade/*.jade';
+var jadeFolders = './src/jade/**/*.jade';
 var jadeOutput = './dist/'
 
 //compile jade 
@@ -49,13 +51,13 @@ gulp.task('stylesheets', function () {
   .pipe(gulp.dest(sassOutput));
 });
 
-//compile JavaScript dependencies installed with npm
+//compile any JavaScript dependencies installed with npm
 var browserifyInput = './src/js/dependencies.js';
 var browserifyOutput = './dist/assets/js';
 gulp.task('browserify', function() {
   return browserify(browserifyInput)
   .bundle()
-  .pipe(source('dependencies.js'))
+  .pipe(source('dependencies.min.js'))
   .pipe(buffer())
   .pipe(uglify())
   .pipe(gulp.dest(browserifyOutput));
@@ -70,7 +72,17 @@ gulp.task('scripts', function() {
   .pipe(gulp.dest(jsOutput));
 });
 
-var jadeWatcher = gulp.watch(jadeInput, ['templates']);
+//make any additional folders
+gulp.task('folders', function() {
+  var dirs = ['./dist/assets/images','./dist/assets/files'];
+  dirs.forEach(function(dir) {
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir);
+    }
+  })
+});
+
+var jadeWatcher = gulp.watch(jadeFolders, ['templates']);
 var sassWatcher = gulp.watch(sassInput, ['stylesheets']);
 var jsWatcher = gulp.watch(jsInput, ['scripts']);
 var browserifyWatcher = gulp.watch(browserifyInput, ['browserify']);
@@ -91,7 +103,7 @@ jsWatcher.on('change', function(event) {
   console.log('File ' + event.path + ' was ' + event.type + ', creating main JavaScript file...');
 });
 
-gulp.task('default', ['stylesheets','templates','browserify','scripts']);
+gulp.task('default', ['stylesheets','templates','browserify','scripts','folders']);
 gulp.start('default');
 //stop errors from closing the app
 process.on('uncaughtException', function(err) {

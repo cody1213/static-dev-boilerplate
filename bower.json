@@ -16,8 +16,10 @@
     "slick-carousel": "*",
     "jquery": "*",
     "bootstrap":"*",
+    "lodash":"*",
     "jquery-ui":"*",
     "bootbox":"*",
+    "moment":"*",
     "font-awesome":"*"
   }
 }
