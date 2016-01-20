@@ -3,15 +3,96 @@ var express    = require('express')
 , compression  = require('compression')
 , app          = express()
 , path         = require('path')
-, cp = require('child_process');
+, cp = require('child_process')
+, gulp = require('gulp')
+, sass = require('gulp-sass')
+, jade = require('gulp-jade')
+, concat = require('gulp-concat')
+, browserify = require('browserify')
+, uglify = require('gulp-uglify')
+, source = require('vinyl-source-stream')
+, buffer = require('vinyl-buffer')
+, sourcemaps = require('gulp-sourcemaps')
+, autoprefixer = require('gulp-autoprefixer');
 
-//grunt for LESS and JADE
-var grunt = cp.spawn('grunt');
-grunt.stdout.on('data', function(data) {
-    // relay output to console
-    console.log("%s", data)
+//to make this work with node v10
+require('es6-promise').polyfill();
+
+
+var jadeInput = './src/jade/*.jade';
+var jadeOutput = './dist/'
+
+//compile jade 
+gulp.task('templates', function() {
+  gulp.src(jadeInput)
+  .pipe(jade( {
+    pretty: true
+  }))
+  .pipe(gulp.dest(jadeOutput))
 });
 
+//compile scss files
+var sassInput = './src/scss/*.scss';
+var sassOutput = './dist/assets/styles/css';
+var sassOptions = {
+  errLogToConsole: true,
+  outputStyle: 'expanded'
+};
+
+gulp.task('stylesheets', function () {
+  return gulp
+  .src(sassInput)
+  .pipe(sourcemaps.init())
+  .pipe(sass(sassOptions).on('error', sass.logError))
+  .pipe(sourcemaps.write())
+  .pipe(autoprefixer())
+  .pipe(gulp.dest(sassOutput));
+});
+
+//compile JavaScript dependencies installed with npm
+var browserifyInput = './src/js/dependencies.js';
+var browserifyOutput = './dist/assets/js';
+gulp.task('browserify', function() {
+  return browserify(browserifyInput)
+  .bundle()
+  .pipe(source('dependencies.js'))
+  .pipe(buffer())
+  .pipe(uglify())
+  .pipe(gulp.dest(browserifyOutput));
+});
+
+//concat main javascript file
+var jsInput = ['./src/js/functions.js','./src/js/main.js'];
+var jsOutput = './dist/assets/js';
+gulp.task('scripts', function() {
+  gulp.src(jsInput)
+  .pipe(concat('main.js'))
+  .pipe(gulp.dest(jsOutput));
+});
+
+var jadeWatcher = gulp.watch(jadeInput, ['templates']);
+var sassWatcher = gulp.watch(sassInput, ['stylesheets']);
+var jsWatcher = gulp.watch(jsInput, ['scripts']);
+var browserifyWatcher = gulp.watch(browserifyInput, ['browserify']);
+
+jadeWatcher.on('change', function(event) {
+  console.log('File ' + event.path + ' was ' + event.type + ', creating HTML...');
+});
+
+sassWatcher.on('change', function(event) {
+  console.log('File ' + event.path + ' was ' + event.type + ', creating CSS...');
+});
+
+browserifyWatcher.on('change', function(event) {
+  console.log('File ' + event.path + ' was ' + event.type + ', creating JS bundle...');
+});
+
+jsWatcher.on('change', function(event) {
+  console.log('File ' + event.path + ' was ' + event.type + ', creating main JavaScript file...');
+});
+
+gulp.task('default', ['stylesheets','templates','browserify','scripts']);
+gulp.start('default');
 //stop errors from closing the app
 process.on('uncaughtException', function(err) {
   console.error(err.stack);
@@ -34,10 +115,10 @@ app.use(bodyParser.urlencoded({
 require('./routes')(app);
 
 //Serve any files in the www folder as static content
-app.use(express.static(__dirname + '/www'));
+app.use(express.static(__dirname + '/dist'));
 
 
 //open web server
 app.listen(port);
 console.log("Listening on port "+port);
-console.log("static dir is : "+__dirname + '/www');
+console.log("static dir is : "+__dirname + '/dist');

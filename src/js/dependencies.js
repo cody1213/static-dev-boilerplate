@@ -1,56 +1,21 @@
-//These are some functions I use all the time.  
+var $ = require('jquery')
+, moment = require('moment')
+, _ = require('lodash')
+; 
 
-var Cody = {
-  id2String: function(obj) {
-    return obj && obj._id?obj._id.toString():false;
-  },
-  getOrdinal:  function(n) {
-     var s=["th","st","nd","rd"],
-         v=n%100;
-     return n+(s[(v-20)%10]||s[v]||s[0]);
-  },
-  queryStringToHash: function(query) {
-    if (query == '') return null;
-    var hash = {};
-    var vars = query.split("&");
-    for (var i = 0; i < vars.length; i++) {
-      var pair = vars[i].split("=");
-      var k = decodeURIComponent(pair[0]);
-      var isArray = false;
-      if (k.substr(k.length-2) == '[]') {
-        isArray = true;
-        k = k.substring(0, k.length - 2);
-      }
-      var v = decodeURIComponent(pair[1]);
-      // If it is the first entry with this name
-      if (typeof hash[k] === "undefined") {
-        if (isArray)  // not end with []. cannot use negative index as IE doesn't understand it
-          hash[k] = [v];
-        else
-          hash[k] = v;
-      // If subsequent entry with this name and not array
-      } else if (typeof hash[k] === "string") {
-        hash[k] = v;  // replace it
-      // If subsequent entry with this name and is array
-      } else {
-        hash[k].push(v);
-      }
-    }
-    _.each(hash, function(index, key) {})
-    return hash;
-  },
-  getUrlVars: function() {
-    var vars = {};
-    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
-     vars[key] = value;
-    });
-    return vars;
-  }
-}
+
+
+
+//These are some functions I use all the time.  
+var getUrlVars = getUrlVars || function() {
+  var vars = {};
+  var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+   vars[key] = value;
+  });
+  return vars;
+};
 
 //jQuery additions
-
-
 //Deserializes query strings
 ;(function ($) {
   $.deserialize = function (query, options) {
@@ -112,7 +77,7 @@ var Cody = {
 //Prototypes
 
 //validation function
-String.prototype.validateAs = function(type) {
+String.prototype.validateAs = String.prototype.validateAs || function(type) {
   var re;
   if (!type) {
     return false;
@@ -152,7 +117,8 @@ String.prototype.validateAs = function(type) {
   return re.test(this);
 };
 
-String.prototype.toTitleCase = function () {
+//various string functions
+String.prototype.toTitleCase = String.prototype.toTitleCase || function () {
   return this.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 };
 
@@ -160,12 +126,12 @@ String.prototype.trim = String.prototype.trim || function() {
   return this.replace(/^\s+|\s+$/,"");
 }
 
-String.prototype.nl2br = function() {
+String.prototype.nl2br = String.prototype.nl2br || function() {
   return this.replace(/(\r\n|\r|\n)/g, "<br />");
 }
-String.prototype.br2nl = function() {
+String.prototype.br2nl = String.prototype.br2nl || function() {
   return this.replace(/<br \/>|<br\/>/g, "\n");
 }
-String.prototype.stripTags = function() {
+String.prototype.stripTags = String.prototype.stripTags || function() {
   return this.replace(/<\S[^>]*>/g, "");
 }

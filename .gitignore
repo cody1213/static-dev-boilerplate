@@ -26,6 +26,9 @@ build/Release
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
 
+#dist directory
+dist
+
 # Bower directories
-www/assets/libs
+dist/assets/libs
 bower_components

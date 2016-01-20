@@ -2,23 +2,30 @@
   "name": "Project",
   "version": "0.1.0",
   "dependencies": {
-    "express": "4.x",
     "body-parser": "*",
-    "compression": "*"
+    "compression": "*",
+    "express": "4.x",
+    "jquery": "^2.2.0",
+    "lodash": "*",
+    "moment": "*"
   },
   "devDependencies": {
-    "supervisor": "*",
     "bower": "*",
+    "browserify": "*",
+    "es6-promise": "*",
+    "gulp": "*",
+    "gulp-autoprefixer": "*",
+    "gulp-concat": "*",
+    "gulp-jade": "*",
+    "gulp-sass": "*",
+    "gulp-sourcemaps": "*",
+    "gulp-uglify": "*",
     "jade": "*",
-    "grunt": "*",
-    "grunt-contrib-jade": "*",
-    "grunt-contrib-watch": "*",
-    "grunt-contrib-less": "*",
-    "grunt-autoprefixer": "*",
-    "less": "*"
+    "vinyl-buffer": "*",
+    "vinyl-source-stream": "*"
   },
   "scripts": {
     "postinstall": "./node_modules/bower/bin/bower install",
-    "start":"node app.js"
+    "start": "node app.js"
   }
 }
