@@ -8,6 +8,7 @@ var express    = require('express')
 , gulp = require('gulp')
 , sass = require('gulp-sass')
 , jade = require('gulp-jade')
+, babel = require('gulp-babel')
 , concat = require('gulp-concat')
 , browserify = require('browserify')
 , uglify = require('gulp-uglify')
@@ -69,6 +70,9 @@ var jsOutput = './dist/assets/js';
 gulp.task('scripts', function() {
   gulp.src(jsInput)
   .pipe(concat('main.js'))
+  .pipe(babel({
+    presets: ['es2015']
+  }))
   .pipe(gulp.dest(jsOutput));
 });
 
