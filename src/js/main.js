@@ -5,6 +5,6 @@ $(function() {
     test.forEach(v => {
       es = v;
     });
-    bootbox.alert("JavaScript is working and ES2015 status is: "+es);
+    bootbox.alert("JavaScript is working and you "+(es?"can":"cannot")+" use ES2015 in the src folder.");
   })
 });
