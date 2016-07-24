@@ -7,7 +7,7 @@ var express    = require('express')
 , cp = require('child_process')
 , gulp = require('gulp')
 , sass = require('gulp-sass')
-, jade = require('gulp-jade')
+, pug = require('gulp-pug')
 , babel = require('gulp-babel')
 , concat = require('gulp-concat')
 , browserify = require('browserify')
@@ -21,17 +21,17 @@ var express    = require('express')
 require('es6-promise').polyfill();
 
 
-var jadeInput = './src/jade/*.jade';
-var jadeFolders = './src/jade/**/*.jade';
-var jadeOutput = './dist/'
+var pugInput = './src/pug/*.pug';
+var pugFolders = './src/pug/**/*.pug';
+var pugOutput = './dist/'
 
-//compile jade 
+//compile pug 
 gulp.task('templates', function() {
-  gulp.src(jadeInput)
-  .pipe(jade( {
+  gulp.src(pugInput)
+  .pipe(pug( {
     pretty: true
   }))
-  .pipe(gulp.dest(jadeOutput))
+  .pipe(gulp.dest(pugOutput))
 });
 
 //compile scss files
@@ -86,12 +86,12 @@ gulp.task('folders', function() {
   })
 });
 
-var jadeWatcher = gulp.watch(jadeFolders, ['templates']);
+var pugWatcher = gulp.watch(pugFolders, ['templates']);
 var sassWatcher = gulp.watch(sassInput, ['stylesheets']);
 var jsWatcher = gulp.watch(jsInput, ['scripts']);
 var browserifyWatcher = gulp.watch(browserifyInput, ['browserify']);
 
-jadeWatcher.on('change', function(event) {
+pugWatcher.on('change', function(event) {
   console.log('File ' + event.path + ' was ' + event.type + ', creating HTML...');
 });
 
