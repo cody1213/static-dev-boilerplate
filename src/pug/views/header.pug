@@ -1,7 +1,18 @@
+- var title = "Project Name";
+- var description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
 head
-  title Project Name
+  title=title
   meta(charset="UTF-8")
   meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+  meta(name="description", content=description)
+  meta(property="og:title", content=title)
+  meta(property="og:description", content=description)
+  meta(name='twitter:site', content="@craftdc")
+  meta(name='twitter:title', content=title)
+  meta(name='twitter:description', content=description)
+  script.
+    document.write('<meta property="og:image" content="'+document.URL+'/assets/images/og.png" />');
+    document.write('<meta property="twitter:image" content="'+document.URL+'/assets/images/og.png" />');
   link(rel='stylesheet', href='assets/libs/bootstrap/dist/css/bootstrap.min.css')
   link(rel='stylesheet', href='assets/libs/font-awesome/css/font-awesome.min.css')
   link(rel='stylesheet', href='assets/libs/jquery-ui/themes/smoothness/jquery-ui.css')

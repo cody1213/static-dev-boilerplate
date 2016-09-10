@@ -20,6 +20,7 @@
     "jquery-ui":"*",
     "bootbox":"*",
     "moment":"*",
-    "font-awesome":"*"
+    "font-awesome":"*",
+    "validator":"*"
   }
 }

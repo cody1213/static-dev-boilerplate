@@ -13,6 +13,14 @@ var getUrlVars = getUrlVars || function() {
   return vars;
 };
 
+// animate anchor clicks
+$('a[href^="#"]').on('click', function(e){     
+  e.preventDefault();
+  $('html, body').animate({
+    scrollTop: $( $.attr(this, 'href') ).offset().top
+  }, 700);
+});
+
 //jQuery additions
 //Deserializes query strings
 ;(function ($) {
