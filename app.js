@@ -71,7 +71,7 @@ gulp.task('scripts', function() {
   gulp.src(jsInput)
   .pipe(concat('main.js'))
   .pipe(babel({
-    presets: ['es2015']
+    presets: ['es2016']
   }))
   .pipe(gulp.dest(jsOutput));
 });

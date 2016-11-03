@@ -12,14 +12,14 @@
     "moment": "*"
   },
   "devDependencies": {
-    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-es2016": "*",
     "bower": "*",
     "browserify": "*",
     "cssify": "*",
     "es6-promise": "*",
     "gulp": "*",
     "gulp-autoprefixer": "*",
-    "gulp-babel": "^6.1.1",
+    "gulp-babel": "*",
     "gulp-concat": "*",
     "gulp-pug": "*",
     "gulp-sass": "*",
