@@ -13,6 +13,8 @@
   },
   "devDependencies": {
     "babel-preset-es2016": "*",
+    "babel-core":"*",
+    "babel-loader":"*",
     "bower": "*",
     "browserify": "*",
     "cssify": "*",
