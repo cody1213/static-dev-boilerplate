@@ -1,10 +1,13 @@
-- var title = "Project Name";
-- var description = "Lorem ipsum dolor sit amet, consectetuer adipiscing elit."
+if typeof page === "undefined"
+  - var page = '';
+- var title = package.name;
+- var description = "Keywords";
 head
-  title=title
+  title=(page?page+' | ':'')+title
   meta(charset="UTF-8")
   meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
   meta(name="description", content=description)
+  meta(name="keywords", content=keywords)
   meta(property="og:title", content=title)
   meta(property="og:description", content=description)
   meta(name='twitter:site', content="@craftdc")
@@ -13,6 +16,9 @@ head
   script.
     document.write('<meta property="og:image" content="'+document.URL+'/assets/images/og.png" />');
     document.write('<meta property="twitter:image" content="'+document.URL+'/assets/images/og.png" />');
-  link(rel='stylesheet', href='assets/libs/bootstrap/dist/css/bootstrap.min.css')
+  link(rel='icon shortcut', href='assets/images/favicon.ico')
+  link(rel='stylesheet', href='assets/libs/bootstrap/css/bootstrap.min.css')
   link(rel='stylesheet', href='assets/libs/font-awesome/css/font-awesome.min.css')
   link(rel='stylesheet', href='assets/styles/css/style.css')
+  link(rel='stylesheet', href='assets/libs/slick-carousel/slick/slick.css')
+  link(rel='stylesheet', href='assets/libs/slick-carousel/slick/slick-theme.css')

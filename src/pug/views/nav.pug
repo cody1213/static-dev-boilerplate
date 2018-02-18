@@ -1,12 +1,22 @@
-.navbar.navbar-default
-  .container-fluid
-    .navbar-header
-      button.navbar-toggle(data-target='.navbar-collapse', data-toggle='collapse', type='button')
-        span.icon-bar
-        span.icon-bar
-        span.icon-bar
-      a.navbar-brand(href='javascript:void(0);') Project name
-    .collapse.navbar-collapse
-      ul.nav.navbar-nav
-        li
-          a.nav-item-test-javascript(href='javascript:void(0);') Test JavaScript
+.menu
+  .pull-right
+      a.close-menu(href="javascript:void(0);")
+        i.fa.fa-close
+  .clearfix
+  ul
+    li 
+      a(href="index.html") Home
+    li 
+      a(href="backpage.html") Backpage
+  .row#nav
+    .col-lg-12.col-md-12.col-sm-12.col-xs-12.nav-wrapper
+      .row
+        .col-lg-12.col-md-12.col-sm-12.col-xs-12.col-lg-offset-0.col-md-offset-0.col-sm-offset-0.col-xs-offset-0
+          nav
+            a(href="/")
+              img.img.img-reponsive.pull-left.logo(src="assets/images/logo.png")
+            .pull-right
+              a.search-button(href="javascript:void(0);")
+                i.fa.fa-search
+              a.menu-button(href="javascript:void(0);")
+                i.fa.fa-bars

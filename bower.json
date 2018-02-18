@@ -1,5 +1,5 @@
 {
-  "name": "A new project",
+  "name": "A New Project",
   "version": "0.0.0",
   "authors": [
     "Cody Brumfield"
@@ -14,11 +14,12 @@
   ],
   "dependencies": {
     "jquery": "*",
-    "bootstrap":"*",
-    "lodash":"*",
-    "bootbox":"*",
-    "moment":"*",
-    "font-awesome":"*",
-    "validator":"*"
+    "bootstrap": "3.x",
+    "lodash": "*",
+    "bootbox": "*",
+    "moment": "*",
+    "font-awesome": "*",
+    "validator": "*",
+    "slick-carousel": "*"
   }
 }

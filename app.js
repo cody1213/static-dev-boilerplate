@@ -20,6 +20,7 @@ var express    = require('express')
 //to make this work with node v10
 require('es6-promise').polyfill();
 
+global.package = require('./package.json');
 
 var pugInput = './src/pug/*.pug';
 var pugFolders = './src/pug/**/*.pug';

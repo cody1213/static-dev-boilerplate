@@ -1,1 +1,58 @@
 @import "_bootstrap-mods";
+@import "_fonts";
+
+@function calculateRem($size) {
+  $remSize: $size / 16px;
+//Default font size on html element is 100%, equivalent to 16px;
+  @return #{$remSize}rem;
+}
+
+// Mixin that will include the fall back px declaration as well as the calculated rem value.
+@mixin fontSize($size) {
+  font-size: $size;
+  font-size: calculateRem($size);
+}
+
+$color1: rgb(153, 141, 195);
+$color2: rgb(125, 197, 122);
+$color3: rgb(77, 195, 207);
+$color4: rgb(125, 110, 177);
+
+$font1: Arial, Helvetica, sans-serif;
+$font2: Verdana, Geneva, sans-serif;
+
+.menu {
+  background-image: linear-gradient( 90deg, rgb(125,110,177) 0%, rgb(77,195,207) 100%);
+  background-repeat: no-repeat;
+  right: -100vw;
+  height: 100%;
+  position: fixed;
+  width: 100vw;
+  heigth: 100vh;
+  z-index: 999;
+  .close-menu {
+    display: inline-block;
+    margin: calculateRem(20px);
+    font-size: 4rem;
+    color: white;
+  }
+  ul {
+    padding: 0;
+    list-style: none;
+    margin: calculateRem(30px) auto;
+    text-align: center;
+    li {
+      a {
+        color: white;
+        font-size: 3.75rem;
+        font-weight: 700;
+        line-height: 5.625rem;
+        @media screen and (max-width: calculateRem(1023px)) {
+          font-size: 1.75rem;
+          font-weight: 700;
+          line-height: 2.625rem;
+        }
+      }
+    }
+  }
+}
