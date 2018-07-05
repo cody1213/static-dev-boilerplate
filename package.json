@@ -1,25 +1,40 @@
 {
-  "name": "Project",
-  "version": "0.1.0",
+  "name": "jhyt",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./bin/www",
+    "test": "mocha ./test/"
+  },
+  "author": "Cody Brumfield <cody_brumfield@hotmail.com> (http://cody.cool)",
   "dependencies": {
-    "body-parser": "*",
-    "compression": "*",
-    "express": "4.x",
-    "jquery": "*",
-    "lodash": "*",
-    "bootstrap-sass": "*",
+    "async": "^2.6.1",
+    "body-parser": "~1.18.2",
     "bootbox": "*",
-    "moment": "*"
+    "bootstrap": "*",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.6.9",
+    "express": "^4.16.3",
+    "jquery": "*",
+    "lodash": "^4.17.10",
+    "moment": "*",
+    "morgan": "~1.9.0",
+    "popper": "^1.0.1",
+    "pug": "2.0.0-beta11",
+    "request": "^2.87.0",
+    "serve-favicon": "~2.4.5",
+    "webpack": "^4.15.1"
   },
   "devDependencies": {
-    "babel-preset-es2016": "*",
-    "babel-core":"*",
-    "babel-loader":"*",
-    "bower": "*",
+    "babel-core": "*",
+    "babel-loader": "*",
+    "babel-preset-env": "*",
     "browserify": "*",
+    "chai": "^4.1.2",
     "cssify": "*",
+    "dotenv": "^5.0.1",
     "es6-promise": "*",
-    "gulp": "*",
+    "gulp": "^4.0.0",
     "gulp-autoprefixer": "*",
     "gulp-babel": "*",
     "gulp-concat": "*",
@@ -27,12 +42,12 @@
     "gulp-sass": "*",
     "gulp-sourcemaps": "*",
     "gulp-uglify": "*",
-    "pug": "*",
+    "mocha": "^5.0.5",
+    "prompt": "^1.0.0",
+    "superagent": "^3.8.2",
+    "supertest": "^3.0.0",
+    "supervisor": "^0.12.0",
     "vinyl-buffer": "*",
     "vinyl-source-stream": "*"
-  },
-  "scripts": {
-    "postinstall": "./node_modules/bower/bin/bower install",
-    "start": "node app.js"
   }
 }
