@@ -1,1 +1,0 @@
-supervisor $1 -w ./ -e js,pug,scss,json -i builtAssets,bin,tmp ../app.js

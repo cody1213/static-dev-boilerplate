@@ -1,0 +1,1 @@
+supervisor --ignore src,dist bin/www

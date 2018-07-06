@@ -1,7 +1,7 @@
 if typeof page === "undefined"
-  - var page = '';
+  - var page = 'Home ';
 - var title = package.name;
-- var description = "Keywords";
+- var description = "";
 head
   title=(page?page+' | ':'')+title
   meta(charset="UTF-8")
@@ -13,12 +13,6 @@ head
   meta(name='twitter:site', content="@craftdc")
   meta(name='twitter:title', content=title)
   meta(name='twitter:description', content=description)
-  script.
-    document.write('<meta property="og:image" content="'+document.URL+'/assets/images/og.png" />');
-    document.write('<meta property="twitter:image" content="'+document.URL+'/assets/images/og.png" />');
   link(rel='icon shortcut', href='assets/images/favicon.ico')
-  link(rel='stylesheet', href='assets/libs/bootstrap/css/bootstrap.min.css')
-  link(rel='stylesheet', href='assets/libs/font-awesome/css/font-awesome.min.css')
+  link(rel='stylesheet', href='assets/libs/bootstrap/dist/css/bootstrap.min.css')
   link(rel='stylesheet', href='assets/styles/css/style.css')
-  link(rel='stylesheet', href='assets/libs/slick-carousel/slick/slick.css')
-  link(rel='stylesheet', href='assets/libs/slick-carousel/slick/slick-theme.css')

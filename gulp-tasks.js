@@ -1,4 +1,5 @@
-const path = require('path')
+const fs = require('fs')
+    , path = require('path')
     , gulp = require('gulp')
     , sass = require('gulp-sass')
     , pug = require('gulp-pug')
@@ -73,15 +74,12 @@ gulp.task('scripts', function() {
   .pipe(gulp.dest(jsOutput));
 });
 
-//make any additional folders
-gulp.task('folders', function() {
-  var dirs = ['./dist/assets/images','./dist/assets/files'];
-  dirs.forEach(function(dir) {
-    if (!fs.existsSync(dir)){
-      fs.mkdirSync(dir);
-    }
-  })
-});
+var dirs = ['./dist','./dist/assets','./dist/assets/images','./dist/assets/libs'];
+dirs.forEach(function(dir) {
+  if (!fs.existsSync(dir)){
+    fs.mkdirSync(dir);
+  }
+})
 
 var pugWatcher = gulp.watch(pugFolders, gulp.series('templates'));
 var sassWatcher = gulp.watch(sassInput, gulp.series('stylesheets'));
@@ -89,28 +87,25 @@ var jsWatcher = gulp.watch(jsInput, gulp.series('scripts'));
 var browserifyWatcher = gulp.watch(browserifyInput, gulp.series('browserify'));
 
 pugWatcher.on('change', function(event) {
-  console.log(event)
-  console.log('File ' + event.path + ' was ' + event.type + ', creating HTML...');
+  console.log('File ' + event + ' changed, generating HTML...');
 }).on('error', function(err) {
   console.error(err);
 });
 
 sassWatcher.on('change', function(event) {
-  console.log('File ' + event.path + ' was ' + event.type + ', creating CSS...');
+  console.log('File ' + event + ' changed, generating CSS...');
 }).on('error', function(err) {
   console.error(err);
 });
 
 browserifyWatcher.on('change', function(event) {
-  console.log('File ' + event.path + ' was ' + event.type + ', creating JS bundle...');
+  console.log('File ' + event + ' changed, generating JS bundle...');
 }).on('error', function(err) {
   console.error(err);
 });
 
 jsWatcher.on('change', function(event) {
-  console.log('File ' + event.path + ' was ' + event.type + ', creating main JavaScript file...');
+  console.log('File ' + event + ' changed, generating main JavaScript file...');
 }).on('error', function(err) {
   console.error(err);
 });
-
-// gulp.task('default', gulp.parallel('stylesheets','templates','browserify','scripts','folders'));
