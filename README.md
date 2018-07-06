@@ -1,5 +1,4 @@
 ### Development Boilerplate
-
 This application includes an express app that can be used as a starting point to build many common types of web applications. 
 
 ## The folders are:
