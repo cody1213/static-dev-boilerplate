@@ -1,7 +1,7 @@
-### Development Boilerplate
+# Development Boilerplate
 This application includes an express app that can be used as a starting point to build many common types of web applications. 
 
-## The folders are:
+### Key Folders:
 
 - `bin/` - a place for scripts. The `www` file starts the web server and app.js.
 - `data/` - the place to put controller functions that fetch data from your models for either your UI routes or your API. 
@@ -12,13 +12,13 @@ This application includes an express app that can be used as a starting point to
 
 If your views will not be pre-compiled for distribution, you can delete the code that compiles the HTML and just use `src/pug` as your `views/` folder.
 
-## Other files: 
+### Key files: 
 
 - app.js - contains the main application code
 - gulp-tasks.js - contains all the automated compilation code
 - server.sh - uses supervisor to run the application so it restarts when changes are made to files not in dist
 
-How to Run
+## How to Run
 
 - install: `npm install`
 - start: `npm start`
