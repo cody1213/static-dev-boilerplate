@@ -16,7 +16,7 @@ If your views will not be pre-compiled for distribution, you can delete the code
 
 - `app.js` - contains the main application code
 - `gulp-tasks.js` - contains all the automated compilation code
-- `server.sh` - uses supervisor to run the application so it restarts when changes are made to files not in dist
+- `server.sh` - uses node supervisor to run the application so it restarts when changes are made to files not in `dist/`
 
 ## How to Run
 

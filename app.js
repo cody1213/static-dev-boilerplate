@@ -12,8 +12,6 @@ var gulptasks = require('./gulp-tasks');
 
 var app = express();
 
-global.youTubeAPIKey = "AIzaSyApHOIYpcCF74WVYOtpvNT6l_RlbrEA5a4";
-
 // view engine setup
 app.set('views', path.join(__dirname, 'src/pug'));
 app.set('view engine', 'pug');
