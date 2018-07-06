@@ -3,14 +3,14 @@ This application includes an express app that can be used as a starting point to
 
 ## The folders are:
 
-- bin/ - a place for scripts. The `www` file starts the web server and app.js.
-- data/ - the place to put controller functions that fetch data from your models for either your UI routes or your API. 
-- routes/ - contains all of your routes
-- src/ - contains your Pug views, SCSS, and ES6 javascript, which is compiled to a dist/ folder 
-- dist/ - contains files compiled from`src/` in HTML, CSS, and browser-compatible Javascript. Contains an `assets/` folder for images, videos, files, etc.  
-- test/ - contains mocha unit test scripts
+- `bin/` - a place for scripts. The `www` file starts the web server and app.js.
+- `data/` - the place to put controller functions that fetch data from your models for either your UI routes or your API. 
+- `routes/` - contains all of your routes
+- `src/` - contains your Pug views, SCSS, and ES6 javascript, which is compiled to a dist/ folder 
+- `dist/` - contains files compiled from`src/` in HTML, CSS, and browser-compatible Javascript. Contains an `assets/` folder for images, videos, files, etc.  
+- `test/` - contains mocha unit test scripts
 
-If your views will not be pre-compiled for distribution, you can delete the code that compiles the HTML and just use src/pug as your views/ folder.
+If your views will not be pre-compiled for distribution, you can delete the code that compiles the HTML and just use `src/pug` as your `views/` folder.
 
 ## Other files: 
 
