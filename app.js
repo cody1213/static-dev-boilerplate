@@ -1,14 +1,43 @@
 var express = require('express');
+var fs = require('fs');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var exec = require('child_process');
 
 var index = require('./routes/index');
 var users = require('./routes/users');
 
-var gulptasks = require('./gulp-tasks');
+if (!process.env.NODE_ENV) {
+  require('dotenv').config({path: __dirname+'/.env-development'})
+}
+const NODE_ENV = process.env.NODE_ENV || 'development';
+
+if (NODE_ENV != "production") {
+  //run gulp tasks
+  var gulptasks = require('./gulpfile');
+
+  //create directory structure for distribution bundle
+  var dirs = ['/dist','/dist/assets','/dist/assets/images','/dist/assets/styles','/dist/assets/videos','/dist/assets/libs'];
+  dirs.forEach(function(dir) {
+    if (!fs.existsSync(__dirname+dir)){
+      fs.mkdirSync(__dirname+dir);
+    }
+  })
+
+  /**
+   * Stop errors from crashing the system
+   */
+  process.on('uncaughtException', function(err) {
+    console.error(err.stack);
+  });
+
+  process.on('unhandledRejection', (reason, promise) => {
+    console.warn('Unhandled promise rejection:', promise, 'reason:', reason.stack || reason);
+  });
+}
 
 var app = express();
 
@@ -22,7 +51,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use(express.static(path.join(__dirname, 'dist')));
+app.use('/www',express.static(path.join(__dirname, 'dist')));
 
 app.use('/', index);
 app.use('/users', users);
