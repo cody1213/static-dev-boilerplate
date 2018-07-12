@@ -1,3 +1,6 @@
-$(function() {
-  bootbox.alert('test')
-});
+'use strict'
+
+$(function () {
+  $('[data-toggle="popover"]').popover();
+  $('[data-toggle="tooltip"]').tooltip()
+})

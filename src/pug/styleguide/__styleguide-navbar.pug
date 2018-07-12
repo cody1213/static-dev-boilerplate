@@ -1,0 +1,32 @@
+//- Style Guide Navigation
+
+nav.navbar.navbar-expand-lg.fixed-top.navbar-dark.bg-dark
+
+  button.btn.btn-outline-secondary.btn-lg.mr-2(type="button" data-toggle="sg-offcanvas")
+    i.fa.fa-ellipsis-v  Sidebar
+  
+  a.navbar-brand.mb-0.h1(href='#') Atomic Boot Pug
+
+  button.navbar-toggler.navbar-toggler-right(type='button', data-toggle='collapse', data-target='#navbarStyleGuide', aria-controls='navbarStyleGuide', aria-expanded='false', aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+
+  #navbarStyleGuide.collapse.navbar-collapse
+    ul.navbar-nav.ml-auto
+      li.nav-item
+        a.nav-link(href='#about') About
+      li.nav-item
+        a.nav-link(href='#foundation') Foundation
+      li.nav-item
+        a.nav-link(href='#basics') Basics
+      li.nav-item
+        a.nav-link(href='#buttons') Buttons
+      li.nav-item
+        a.nav-link(href='#forms') Forms
+      li.nav-item
+        a.nav-link(href='#layout') Layout
+      li.nav-item
+        a.nav-link(href='#components') Components
+    a.btn.btn-outline-primary.mr-2(href="http://getbootstrap.com" target="_blank") Bootstrap
+    a.btn.btn-outline-success(href="https://github.com/SimonPadbury/Atomic-Boot-Pug" target="_blank")
+      i.fa.fa-github(aria-hidden="true")
+      |  GitHub
