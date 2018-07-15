@@ -35,7 +35,7 @@
     "cssify": "^1.0.3",
     "dotenv": "^5.0.1",
     "es6-promise": "*",
-    "gulp": "^4.0.0",
+    "gulp": "3.x",
     "gulp-autoprefixer": "*",
     "gulp-babel": "*",
     "gulp-concat": "*",

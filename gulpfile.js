@@ -82,10 +82,10 @@ gulp.task('scripts', function() {
 });
 
 
-var pugWatcher = gulp.watch(pugFolders, gulp.series('templates'));
-var sassWatcher = gulp.watch(sassInput, gulp.series('stylesheets'));
-var jsWatcher = gulp.watch(jsInput, gulp.series('scripts'));
-var browserifyWatcher = gulp.watch(browserifyInput, gulp.series('browserify'));
+var pugWatcher = gulp.watch(pugFolders, ['templates']);
+var sassWatcher = gulp.watch(sassInput, ['stylesheets']);
+var jsWatcher = gulp.watch(jsInput, ['scripts']);
+var browserifyWatcher = gulp.watch(browserifyInput, ['browserify']);
 
 pugWatcher.on('change', function(event) {
   console.log('File ' + event + ' changed, generating HTML...');
