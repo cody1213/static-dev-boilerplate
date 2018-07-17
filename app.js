@@ -10,6 +10,8 @@ var exec = require('child_process');
 var index = require('./routes/index');
 var users = require('./routes/users');
 
+global.package = require('./package.json');
+
 if (!process.env.NODE_ENV) {
   require('dotenv').config({path: __dirname+'/.env-development'})
 }
@@ -51,7 +53,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-app.use('/www',express.static(path.join(__dirname, 'dist')));
+app.use('/',express.static(path.join(__dirname, 'dist')));
 
 app.use('/', index);
 app.use('/users', users);

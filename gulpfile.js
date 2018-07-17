@@ -1,37 +1,31 @@
-const fs = require('fs')
-    , path = require('path')
-    , gulp = require('gulp')
-    , sass = require('gulp-sass')
-    , pug = require('gulp-pug')
-    , babel = require('gulp-babel')
-    , concat = require('gulp-concat')
-    , browserify = require('browserify')
-    , uglify = require('gulp-uglify')
-    , sourcemaps = require('gulp-sourcemaps')
-    , autoprefixer = require('gulp-autoprefixer')
-    , source = require('vinyl-source-stream')
-    , buffer = require('vinyl-buffer')
-    , size = require('gulp-size')
-;
-
-var logError = function(e) {
-  if (err) console.error(err);
-}
+var fs = require('fs')
+, gulp = require('gulp')
+, sass = require('gulp-sass')
+, pug = require('gulp-pug')
+, babel = require('gulp-babel')
+, concat = require('gulp-concat')
+, browserify = require('browserify')
+, uglify = require('gulp-uglify')
+, source = require('vinyl-source-stream')
+, buffer = require('vinyl-buffer')
+, sourcemaps = require('gulp-sourcemaps')
+, autoprefixer = require('gulp-autoprefixer')
 
 //to make this work with node v10
 require('es6-promise').polyfill();
 
+global.package = require('./package.json');
+
 var pugInput = './src/pug/*.pug';
 var pugFolders = './src/pug/**/*.pug';
-var pugOutput = './dist/';
-global.package = require('./package.json');
+var pugOutput = './dist/'
 
 //compile pug 
 gulp.task('templates', function() {
   gulp.src(pugInput)
-  .pipe(pug({
+  .pipe(pug( {
     pretty: true
-  }).on('error', logError))
+  }))
   .pipe(gulp.dest(pugOutput))
 });
 
@@ -54,33 +48,38 @@ gulp.task('stylesheets', function () {
 });
 
 //compile any JavaScript dependencies installed with npm
-var browserifyInput = __dirname+'/src/js/dependencies.js';
-var browserifyOutput = __dirname+'/dist/assets/js';
+var browserifyInput = './src/js/dependencies.js';
+var browserifyOutput = './dist/assets/js';
 gulp.task('browserify', function() {
-  var bundler = browserify({
-    entries: [browserifyInput],
-    debug: true
-  })
-  return bundler.bundle()
+  return browserify(browserifyInput)
+  .bundle()
   .pipe(source('dependencies.min.js'))
   .pipe(buffer())
   .pipe(uglify())
-  .pipe(size())
   .pipe(gulp.dest(browserifyOutput));
 });
 
 //concat main javascript file
-var jsInput = [__dirname+'/src/js/functions.js',__dirname+'/src/js/main.js'];
-var jsOutput = __dirname+'/dist/assets/js';
+var jsInput = ['./src/js/functions.js','./src/js/main.js'];
+var jsOutput = './dist/assets/js';
 gulp.task('scripts', function() {
   gulp.src(jsInput)
-  .pipe(concat('main.js').on('error', logError))
+  .pipe(concat('main.js'))
   .pipe(babel({
     presets: ['env']
-  }).on('error', logError))
+  }))
   .pipe(gulp.dest(jsOutput));
 });
 
+//make any additional folders
+gulp.task('folders', function() {
+  var dirs = ['./dist/assets/images','./dist/assets/files'];
+  dirs.forEach(function(dir) {
+    if (!fs.existsSync(dir)){
+      fs.mkdirSync(dir);
+    }
+  })
+});
 
 var pugWatcher = gulp.watch(pugFolders, ['templates']);
 var sassWatcher = gulp.watch(sassInput, ['stylesheets']);
@@ -88,25 +87,21 @@ var jsWatcher = gulp.watch(jsInput, ['scripts']);
 var browserifyWatcher = gulp.watch(browserifyInput, ['browserify']);
 
 pugWatcher.on('change', function(event) {
-  console.log('File ' + event + ' changed, generating HTML...');
-}).on('error', function(err) {
-  console.error(err);
+  console.log('File ' + event.path + ' was ' + event.type + ', creating HTML...');
 });
 
 sassWatcher.on('change', function(event) {
-  console.log('File ' + event + ' changed, generating CSS...');
-}).on('error', function(err) {
-  console.error(err);
+  console.log('File ' + event.path + ' was ' + event.type + ', creating CSS...');
 });
 
 browserifyWatcher.on('change', function(event) {
-  console.log('File ' + event + ' changed, generating JS bundle...');
-}).on('error', function(err) {
-  console.error(err);
+  console.log('File ' + event.path + ' was ' + event.type + ', creating JS bundle...');
 });
 
 jsWatcher.on('change', function(event) {
-  console.log('File ' + event + ' changed, generating main JavaScript file...');
-}).on('error', function(err) {
-  console.error(err);
+  console.log('File ' + event.path + ' was ' + event.type + ', creating main JavaScript file...');
 });
+
+gulp.task('default', ['stylesheets','templates','browserify','scripts','folders']);
+gulp.start('default');
+

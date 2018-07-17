@@ -1,9 +1,4 @@
-//These are some functions I use all the time.
-
-//support for location.origin in < IE 11 
-if (!window.location.origin) { 
-  window.location.origin = window.location.protocol + '//' + window.location.hostname + (window.location.port ? (':' + window.location.port) : '');
-} 
+//These are some functions and things I use on almost every project.
 
 var getUrlVars = getUrlVars || function() {
   var vars = {};
