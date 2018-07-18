@@ -1,51 +1,103 @@
-@import "_bootstrap-mods";
 @import "_fonts"; 
-@import "_variables"
+@import "_variables";
 
-@function calculateRem($size) {
-  $remSize: $size / 16px;
-//Default font size on html element is 100%, equivalent to 16px;
-  @return #{$remSize}rem;
+a:hover {
+  text-decoration: none !important;
+}
+body, html {
+  overflow-x: hidden;
+  font-family: $font2;
+  font-size: 1rem;
+  font-weight: 400;
 }
 
-// Mixin that will include the fall back px declaration as well as the calculated rem value.
-@mixin fontSize($size) {
-  font-size: $size;
-  font-size: calculateRem($size);
-}
-
-.menu {
-  background-image: linear-gradient( 90deg, rgb(125,110,177) 0%, rgb(77,195,207) 100%);
-  background-repeat: no-repeat;
-  right: -100vw;
-  height: 100%;
-  position: fixed;
-  width: 100vw;
-  heigth: 100vh;
-  z-index: 999;
-  .close-menu {
-    display: inline-block;
-    margin: calculateRem(20px);
-    font-size: 4rem;
-    color: white;
+.hero {
+  nav {
+    .logo {
+      margin: 20px;
+      max-width: 60%;
+    }
+    .menu-button {
+      margin: 20px;
+    }
   }
-  ul {
-    padding: 0;
-    list-style: none;
-    margin: calculateRem(30px) auto;
-    text-align: center;
-    li {
-      a {
-        color: white;
-        font-size: 3.75rem;
-        font-weight: 700;
-        line-height: 5.625rem;
-        @media screen and (max-width: calculateRem(1023px)) {
-          font-size: 1.75rem;
+  .nav-menu {
+    background-color: rgba(0,0,0,.9);
+    background-repeat: no-repeat;
+    right: -100vw;
+    height: 100%;
+    position: fixed;
+    width: 100vw;
+    heigth: 100vh;
+    z-index: 999;
+    .close-menu {
+      display: inline-block;
+      margin-right: 20px;
+      margin-top: 0px;
+      font-size: 40px;
+      color: white;
+
+    }
+    ul {
+      padding: 0;
+      list-style: none;
+      margin: 30px;
+      text-align: left;
+      li {
+        a {
+          color: white;
+          font-family: $font1;
+          font-size: 30px;
           font-weight: 700;
-          line-height: 2.625rem;
+          line-height: 50px;
         }
       }
     }
+  }
+}
+
+.footer {
+  background-color: rgba(55, 31, 130, 1.00);
+  color: white;
+  padding-bottom: 50px;
+  a {
+    color: white;
+  }
+  img {
+    display: inline-block;
+    margin: 0 auto;
+  }
+  .footer-widget {
+    margin: 25px;
+    .widget-title {
+      color: rgb(222, 250, 110);
+      font-family: $font1;
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .widget-content {
+      color: white;
+      font-family: $font1;
+      font-size: 14px;
+      font-weight: 300;
+      line-height: 21px;
+    }
+  }
+}
+.privacy-and-copyright {
+  text-align: center;
+  line-height: 40px;
+  width: 100vw;
+  font-family: $font1;
+  font-size: 12px;
+  font-weight: 300;
+  line-height: 21px;
+  display: inline-block;
+  a {
+    color: black;
+    display: inline-block;
+    margin: 0 auto;
+    line-height: 21px;
   }
 }

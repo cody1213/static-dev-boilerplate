@@ -1,0 +1,18 @@
+if typeof page === "undefined"
+  - var page = 'Home';
+- var title = ""
+- var description = "";
+head
+  title=(page?page+' | ':'')+title
+  meta(charset="UTF-8")
+  meta(name='viewport', content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no')
+  meta(name="description", content=description)
+  meta(name="keywords", content=keywords)
+  meta(property="og:title", content=title)
+  meta(property="og:description", content=description)
+  meta(name='twitter:site', content="@craftdc")
+  meta(name='twitter:title', content=title)
+  meta(name='twitter:description', content=description)
+  link(rel='icon shortcut', href='assets/images/favicon.ico')
+  link(rel='stylesheet', href='assets/libs/fontawesome-pro/css/all.css')
+  link(rel='stylesheet', href='assets/styles/css/style.css')

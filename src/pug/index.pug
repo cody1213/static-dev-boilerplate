@@ -1,59 +1,11 @@
 doctype html
 html(lang="en-US")
-  include views/header
-  body
+  include views/head
+  body.home
+    include views/header
     .row
-      .col-lg-12.col-md-12.col-sm-12.col-xs-12.col-lg-offset-0.col-md-offset-0.col-sm-offset-0.col-xs-offset-0
-    body.sg-body
-    include bootstrap-4/__bootstrap-4-index
-
-    .container-fluid
-      .row
-        .col-lg-12.col-md-12.col-sm-12.col-xs-12.col-lg-offset-0.col-md-offset-0.col-sm-offset-0.col-xs-offset-0
-            //- Basics
-            h2#basics.sg-h2 Basics
-
-            include styleguide/_headings
-            include styleguide/_text-elements
-            include styleguide/_address
-            include styleguide/_blockquote
-            include styleguide/_code
-            include styleguide/_lists
-            include styleguide/_tables
-            include styleguide/_images
-            include styleguide/_figures
-            include styleguide/_progress
-
-            //- Buttons
-            h2#buttons.sg-h2 Buttons
-            include styleguide/_buttons
-
-            //- Forms
-            h2#forms.sg-h2 Forms
-            include styleguide/_forms
-
-            //- Layout
-            h2#layout.sg-h2 Layout
-
-            include styleguide/_grid
-            include styleguide/_media-objects
-
-            //-Components
-            h2#components.sg-h2 Components
-
-            include styleguide/_alerts
-            include styleguide/_badge
-            include styleguide/_breadcrumb
-            include styleguide/_cards
-            include styleguide/_carousel
-            include styleguide/_dropdowns
-            include styleguide/_jumbotron
-            include styleguide/_list-groups
-            include styleguide/_navbars
-            include styleguide/_navs
-            include styleguide/_modal
-            include styleguide/_pagination
-            include styleguide/_popovers
-            include styleguide/_scrollspy
-            include styleguide/_tooltips
+      .col-10.offset-1
+        h1 Welcome
+    include views/footer
+    include views/privacy-policy          
     include views/javascript-libs

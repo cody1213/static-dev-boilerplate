@@ -86,7 +86,8 @@ gulp.task('folders', function() {
 });
 
 browserSync.init({
-  proxy: "localhost:3000"
+  proxy: "localhost:3000",
+  port: 4000
 });
 
 var pugWatcher = gulp.watch(pugFolders, ['templates']);
