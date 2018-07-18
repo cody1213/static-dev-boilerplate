@@ -31,6 +31,7 @@
     "babel-core": "*",
     "babel-loader": "*",
     "babel-preset-env": "*",
+    "browser-sync": "^2.24.5",
     "browserify": "*",
     "chai": "^4.1.2",
     "cssify": "^1.0.3",

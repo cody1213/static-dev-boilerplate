@@ -10,6 +10,8 @@ var fs = require('fs')
 , buffer = require('vinyl-buffer')
 , sourcemaps = require('gulp-sourcemaps')
 , autoprefixer = require('gulp-autoprefixer')
+, browserSync = require('browser-sync').create()
+;
 
 //to make this work with node v10
 require('es6-promise').polyfill();
@@ -27,6 +29,7 @@ gulp.task('templates', function() {
     pretty: true
   }))
   .pipe(gulp.dest(pugOutput))
+  .pipe(browserSync.stream({once: true}));
 });
 
 //compile scss files
@@ -44,7 +47,8 @@ gulp.task('stylesheets', function () {
   .pipe(sass(sassOptions).on('error', sass.logError))
   .pipe(sourcemaps.write())
   .pipe(autoprefixer())
-  .pipe(gulp.dest(sassOutput));
+  .pipe(gulp.dest(sassOutput))
+  .pipe(browserSync.reload({stream: true}))
 });
 
 //compile any JavaScript dependencies installed with npm
@@ -79,6 +83,10 @@ gulp.task('folders', function() {
       fs.mkdirSync(dir);
     }
   })
+});
+
+browserSync.init({
+  proxy: "localhost:3000"
 });
 
 var pugWatcher = gulp.watch(pugFolders, ['templates']);
