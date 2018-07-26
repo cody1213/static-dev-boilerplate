@@ -23,4 +23,10 @@ $(function () {
       right: "0px"
     }, 500);
   });
+
+  //mixitup
+  var containerEl = document.querySelectorAll('.mixitup');
+  if (typeof mixitup !== "undefined" && containerEl && containerEl.length) {
+    var mixer = mixitup(containerEl, {})
+  }
 })
