@@ -6,7 +6,7 @@ window.bootstrap = require('../../node_modules/bootstrap/dist/js/bootstrap')
 window.bootbox = require('bootbox');
 window.moment = require('moment');
 window.mixitup = require('mixitup')
-window.slick = require('slick');
+window.slick = require('slick-carousel');
 
 // Get Bootstrap styles with cssify
 require('../../node_modules/bootstrap/dist/css/bootstrap.css')

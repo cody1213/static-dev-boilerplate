@@ -77,7 +77,7 @@ gulp.task('scripts', function() {
 
 //make any additional folders
 gulp.task('folders', function() {
-  var dirs = ['./dist/assets/images','./dist/assets/files'];
+  var dirs = ['./dist','./dist/assets','./dist/assets/images','./dist/assets/files'];
   dirs.forEach(function(dir) {
     if (!fs.existsSync(dir)){
       fs.mkdirSync(dir);
@@ -87,7 +87,7 @@ gulp.task('folders', function() {
 
 browserSync.init({
   proxy: "localhost:3000",
-  port: 4000
+  port: 3000
 });
 
 var pugWatcher = gulp.watch(pugFolders, ['templates']);
