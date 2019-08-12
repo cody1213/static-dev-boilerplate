@@ -1,103 +1,213 @@
-@import "_fonts"; 
+@import "_fonts";
 @import "_variables";
 
-a:hover {
-  text-decoration: none !important;
+/*
+	Theme Name: Luntz
+	Theme URI: http://cody1213.github.io
+	Description: A custom WordPress Theme written by Cody Brumfield
+	Version: 1.0
+	Author: Cody Brumfield
+	Author URI: http://cody1213.github.io
+	Tags: HTML5, CSS3, Responsive
+*/
+
+
+/*------------------------------------*\
+    RESPONSIVE
+\*------------------------------------*/
+
+@media only screen and (min-width:320px) {
+
 }
+@media only screen and (min-width:480px) {
+
+}
+@media only screen and (min-width:768px) {
+
+}
+@media only screen and (min-width:1024px) {
+
+}
+@media only screen and (min-width:1140px) {
+
+}
+@media only screen and (min-width:1280px) {
+
+}
+@media only screen and (-webkit-min-device-pixel-ratio:1.5),
+	   only screen and (min-resolution:144dpi) {
+
+}
+
+/*------------------------------------*\
+    WORDPRESS CORE
+\*------------------------------------*/
+
+.alignnone {
+	margin:5px 20px 20px 0;
+}
+.aligncenter,
+div.aligncenter {
+	display:block;
+	margin:5px auto 5px auto;
+}
+.alignright {
+	float:right;
+	margin:5px 0 20px 20px;
+}
+.alignleft {
+	float:left;
+	margin:5px 20px 20px 0;
+}
+a img.alignright {
+	float:right;
+	margin:5px 0 20px 20px;
+}
+a img.alignnone {
+	margin:5px 20px 20px 0;
+}
+a img.alignleft {
+	float:left;
+	margin:5px 20px 20px 0;
+}
+a img.aligncenter {
+	display:block;
+	margin-left:auto;
+	margin-right:auto;
+}
+.wp-caption {
+	background:#FFF;
+	border:1px solid #F0F0F0;
+	max-width:96%;
+	padding:5px 3px 10px;
+	text-align:center;
+}
+.wp-caption.alignnone {
+	margin:5px 20px 20px 0;
+}
+.wp-caption.alignleft {
+	margin:5px 20px 20px 0;
+}
+.wp-caption.alignright {
+	margin:5px 0 20px 20px;
+}
+.wp-caption img {
+	border:0 none;
+	height:auto;
+	margin:0;
+	max-width:98.5%;
+	padding:0;
+	width:auto;
+}
+.wp-caption .wp-caption-text,
+.gallery-caption {
+	font-size:11px;
+	line-height:17px;
+	margin:0;
+	padding:0 4px 5px;
+}
+.sticky {
+
+}
+.bypostauthor {
+
+}
+
+/*------------------------------------*\
+    PRINT
+\*------------------------------------*/
+
+@media print {
+	* {
+		background:transparent !important;
+		color:#000 !important;
+		box-shadow:none !important;
+		text-shadow:none !important;
+	}
+	a,
+	a:visited {
+		text-decoration:none;
+	}
+  a:focus,
+  a:hover,
+  a:active {
+  	outline:0;
+  }
+  input:focus {
+  	outline:0;
+  }
+}
+
+/*------------------------------------*\
+    Styles
+\*------------------------------------*/
+
 body, html {
   overflow-x: hidden;
-  font-family: $font2;
+  font-family: $font;
   font-size: 1rem;
   font-weight: 400;
-}
-
-.hero {
-  nav {
-    .logo {
-      margin: 20px;
-      max-width: 60%;
-    }
-    .menu-button {
-      margin: 20px;
-    }
+  a:visited {
+		text-decoration:none;
+	}
+  a:focus,
+  a:hover,
+  a:active {
+  	outline:0;
   }
-  .nav-menu {
-    background-color: rgba(0,0,0,.9);
-    background-repeat: no-repeat;
-    right: -100vw;
-    height: 100%;
-    position: fixed;
-    width: 100vw;
-    heigth: 100vh;
-    z-index: 999;
-    .close-menu {
-      display: inline-block;
-      margin-right: 20px;
-      margin-top: 0px;
-      font-size: 40px;
-      color: white;
-
-    }
-    ul {
-      padding: 0;
-      list-style: none;
-      margin: 30px;
-      text-align: left;
-      li {
-        a {
-          color: white;
-          font-family: $font1;
-          font-size: 30px;
-          font-weight: 700;
-          line-height: 50px;
-        }
-      }
-    }
+  input:focus {
+  	outline:0;
   }
-}
+  h1, .h1 {
+    font-size: 64px;
+    font-weight: 800;
+  }
+  h2, .h2 {
+    font-size: 48px;
+    font-weight: 800;
+  }
+  h3, .h3 {
+    font-size: 36px;
+    font-weight: 800;
+  }
+  h4, .h4 {
+    font-size: 24px;
+    font-weight: 800;
+  }
+  h5, .h4 {
+    font-size: 16px;
+    font-weight: 800;
+  }
+  h6, .h5 {
+    font-size: 12px;
+    font-weight: 800;
+  }
 
-.footer {
-  background-color: rgba(55, 31, 130, 1.00);
-  color: white;
-  padding-bottom: 50px;
-  a {
+  blockquote {
+    background: #222222;
     color: white;
+    border-left: 10px solid #aaa;
+    margin: 1.5em 0px;
+    padding: 0.5em 10px;
+    quotes: "\201C""\201D""\2018""\2019";
   }
-  img {
-    display: inline-block;
-    margin: 0 auto;
+  blockquote:before {
+    color: #ccc;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.3em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
   }
-  .footer-widget {
-    margin: 25px;
-    .widget-title {
-      color: rgb(222, 250, 110);
-      font-family: $font1;
-      font-size: 14px;
-      font-weight: 700;
-      text-transform: uppercase;
-    }
-    .widget-content {
-      color: white;
-      font-family: $font1;
-      font-size: 14px;
-      font-weight: 300;
-      line-height: 21px;
-    }
+  blockquote:after {
+    color: #ccc;
+    content: close-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
   }
-}
-.privacy-and-copyright {
-  text-align: center;
-  line-height: 40px;
-  width: 100vw;
-  font-family: $font1;
-  font-size: 12px;
-  font-weight: 300;
-  line-height: 21px;
-  display: inline-block;
-  a {
-    color: black;
-    display: inline-block;
-    margin: 0 auto;
-    line-height: 21px;
+  blockquote p {
+    display: inline;
   }
 }

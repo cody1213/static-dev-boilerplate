@@ -1,6 +1,7 @@
 'use strict'
 
 $(function () {
+
   $('[data-toggle="popover"]').popover();
   $('[data-toggle="tooltip"]').tooltip();
   $('.menu-button').on('click', function() {
@@ -29,4 +30,11 @@ $(function () {
   if (typeof mixitup !== "undefined" && containerEl && containerEl.length) {
     var mixer = mixitup(containerEl, {})
   }
+
+  //slick carousels
+  $('.slick-carousel').slick({
+    dots: true,
+    fade: true,
+    infinite: true,
+  });
 })

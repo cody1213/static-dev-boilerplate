@@ -2,7 +2,10 @@ doctype html
 html(lang="en-US")
   include views/head
   body.home
-    include views/header
-    include views/footer
-    include views/privacy-policy          
-    include views/javascript-libs
+    .container-fluid
+      include views/header
+      section.section
+        h1 Welcome
+      include views/footer
+      include views/privacy-policy          
+      include views/javascript-libs

@@ -1,18 +1,15 @@
-.nav-menu
-  .row
-    .col
-      .float-right
-        a.close-menu(href="javascript:void(0);")
-          h1 &times;
-  .clearfix
-  ul
-    li 
-      a(href="index.html") Home
-    li 
-      a(href="backpage.html") Backpage
-.row.row-eq-height
-  .col-10.col-lg-11.col-xl-11
-    a(href="/")
-      img.img-fluid.logo(src="http://via.placeholder.com/350x150", alt="Logo")
-  .col-2.col-lg-1.col-xl-1.nav-menu-button-wrapper
-    a.btn.btn-secondary.menu-button(href="javascript:void(0);") &#9776;
+nav.navbar.navbar-expand-lg.navbar-light.bg-light
+  a.navbar-brand(href='#') Navbar
+  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+    span.navbar-toggler-icon
+  #navbarSupportedContent.collapse.navbar-collapse
+    ul.navbar-nav.mr-auto
+      li.nav-item.active
+        a.nav-link(href='/') Home 
+      li.nav-item.dropdown
+        a#navbarDropdown.nav-link.dropdown-toggle(href='#' role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+          | Basic Templates
+        .dropdown-menu(aria-labelledby='navbarDropdown')
+          a.dropdown-item(href='page.html') Page
+          a.dropdown-item(href='single.html') Single
+          a.dropdown-item(href='error.html') 404 Error

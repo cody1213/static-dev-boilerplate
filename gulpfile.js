@@ -22,7 +22,7 @@ var pugInput = './src/pug/*.pug';
 var pugFolders = './src/pug/**/*.pug';
 var pugOutput = './dist/'
 
-//compile pug 
+//compile pug
 gulp.task('templates', function() {
   gulp.src(pugInput)
   .pipe(pug( {
@@ -77,12 +77,17 @@ gulp.task('scripts', function() {
 
 //make any additional folders
 gulp.task('folders', function() {
-  var dirs = ['./dist','./dist/assets','./dist/assets/images','./dist/assets/files'];
+  var dirs = ['./dist','./dist/assets','./dist/assets/images','./dist/assets/files','./dist/assets/webfonts'];
   dirs.forEach(function(dir) {
     if (!fs.existsSync(dir)){
       fs.mkdirSync(dir);
     }
   })
+});
+
+gulp.task('icons', function() {
+  gulp.src('node_modules/@fortawesome/fontawesome-pro/webfonts/*')
+  .pipe(gulp.dest('./dist/assets/webfonts/'));
 });
 
 browserSync.init({
@@ -111,6 +116,5 @@ jsWatcher.on('change', function(event) {
   console.log('File ' + event.path + ' was ' + event.type + ', creating main JavaScript file...');
 });
 
-gulp.task('default', ['stylesheets','templates','browserify','scripts','folders']);
+gulp.task('default', ['stylesheets','templates','browserify','scripts','folders','icons']);
 gulp.start('default');
-
