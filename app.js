@@ -17,29 +17,27 @@ if (!process.env.NODE_ENV) {
 }
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-if (NODE_ENV != "production") {
-  //run gulp tasks
-  var gulptasks = require('./gulpfile');
+//run gulp tasks
+var gulptasks = require('./gulpfile');
 
-  //create directory structure for distribution bundle
-  var dirs = ['/dist','/dist/assets','/dist/assets/images','/dist/assets/styles','/dist/assets/videos','/dist/assets/libs'];
-  dirs.forEach(function(dir) {
-    if (!fs.existsSync(__dirname+dir)){
-      fs.mkdirSync(__dirname+dir);
-    }
-  })
+//create directory structure for distribution bundle
+var dirs = ['/dist','/dist/assets','/dist/assets/images','/dist/assets/styles','/dist/assets/videos','/dist/assets/images'];
+dirs.forEach(function(dir) {
+  if (!fs.existsSync(__dirname+dir)){
+    fs.mkdirSync(__dirname+dir);
+  }
+})
 
-  /**
-   * Stop errors from crashing the system
-   */
-  process.on('uncaughtException', function(err) {
-    console.error(err.stack);
-  });
+/**
+ * Stop errors from crashing the system
+ */
+process.on('uncaughtException', function(err) {
+  console.error(err.stack);
+});
 
-  process.on('unhandledRejection', (reason, promise) => {
-    console.warn('Unhandled promise rejection:', promise, 'reason:', reason.stack || reason);
-  });
-}
+process.on('unhandledRejection', (reason, promise) => {
+  console.warn('Unhandled promise rejection:', promise, 'reason:', reason.stack || reason);
+});
 
 var app = express();
 
@@ -74,7 +72,6 @@ app.use(function(err, req, res, next) {
 
   // render the error page
   res.status(err.status || 500);
-  res.render('error');
 });
 
 module.exports = app;

@@ -19,7 +19,7 @@ describe('Basic Server', function() {
     options.method = "get";
     request(options, function(req, res, body) {
       var json = JSON.parse(body);
-      expect(json.success).to.equal(true);
+      expect(json.success?true:false).to.equal(true);
     })
   });
 
@@ -27,7 +27,7 @@ describe('Basic Server', function() {
     options.method = "post";
     request(options, function(req, res, body) {
       var json = JSON.parse(body);
-      expect(json.success).to.equal(true);
+      expect(json.success?true:false).to.equal(true);
     })
   })
 
@@ -36,7 +36,7 @@ describe('Basic Server', function() {
     options.method = "put";
     request(options, function(req, res, body) {
       var json = JSON.parse(body);
-      expect(json.success).to.equal(true);
+      expect(json.success?true:false).to.equal(true);
     })
   });
 
@@ -44,7 +44,7 @@ describe('Basic Server', function() {
     options.method = "delete";
     request(options, function(req, res, body) {
       var json = JSON.parse(body);
-      expect(json.success).to.equal(true);
+      expect(json.success?true:false).to.equal(true);
     })
   });
 
@@ -52,7 +52,7 @@ describe('Basic Server', function() {
     options.method = "patch";
     request(options, function(req, res, body) {
       var json = JSON.parse(body);
-      expect(json.success).to.equal(true);
+      expect(json.success?true:false).to.equal(true);
     })
   });
 });

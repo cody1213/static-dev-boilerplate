@@ -1,1 +1,1 @@
-supervisor --ignore dist bin/www
+supervisor --ignore dist,src bin/www
