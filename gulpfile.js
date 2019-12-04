@@ -8,6 +8,7 @@ const fs = require('fs'),
   sass = require('gulp-sass'),
   pug = require('gulp-pug'),
   babel = require('gulp-babel'),
+  babelify = require('babelify'),
   concat = require('gulp-concat'),
   browserify = require('browserify'),
   beautify = require('gulp-beautify'),
@@ -16,10 +17,13 @@ const fs = require('fs'),
   source = require('vinyl-source-stream'),
   buffer = require('vinyl-buffer'),
   sourcemaps = require('gulp-sourcemaps'),
-  autoprefixer = require('gulp-autoprefixer')
+  autoprefixer = require('gulp-autoprefixer'),
+  plumber = require('gulp-plumber'),
+  cleanCSS = require('gulp-clean-css'),
+  rename = require('gulp-rename')
 ;
 
-if (NODE_ENV != "production") browserSync = require('browser-sync').create();
+if (NODE_ENV != "production") var browserSync = require('browser-sync').create();
 
 //to make this work with node v10
 require('es6-promise').polyfill();
@@ -32,7 +36,7 @@ var pugOutput = './dist/'
 
 //compile pug
 gulp.task('templates', function(done) {
-  return gulp.src(pugInput)
+  gulp.src(pugInput)
     .pipe(pug().on('error', console.error))
     .pipe(NODE_ENV == "production"?noop():beautify.html({
       indent_size: 2,
@@ -54,26 +58,42 @@ var sassOptions = {
   outputStyle: 'expanded'
 };
 gulp.task('stylesheets', function(done) {
-  return gulp
+  gulp
     .src(sassInput)
     .pipe(sourcemaps.init())
+    .pipe(plumber())
     .pipe(sass(sassOptions).on('error', sass.logError))
     .pipe(sourcemaps.write())
     .pipe(autoprefixer())
     .pipe(gulp.dest(sassOutput))
+  done()
+});
+
+gulp.task('minify-css', function(done) {
+  gulp.src(sassOutput+'/style.css')
+    .pipe(cleanCSS().on('error',console.error))
+    .pipe(rename({
+      suffix: '.min'
+    }).on('error',console.error))
+    .pipe(gulp.dest('./dist/assets/styles/css/'))
     .pipe(NODE_ENV == "production"?noop():browserSync.reload({
       stream: true
     }))
-  done()
+  ;
+  done();
 });
+
 //compile any JavaScript dependencies installed with npm
 var browserifyInput = './src/js/main.js';
 var browserifyOutput = './dist/assets/js';
 var browserifyFolders = './src/js/**/*.js'
 gulp.task('browserify', function(done) {
-  return browserify(browserifyInput)
+  browserify(browserifyInput)
+    .transform(babelify)
     .bundle()
+    .on('error', console.error)
     .pipe(source('bundle.min.js'))
+    .pipe(plumber())
     .pipe(buffer())
     .pipe(terser())
     .pipe(gulp.dest(browserifyOutput));
@@ -81,22 +101,25 @@ gulp.task('browserify', function(done) {
 });
 
 gulp.task('browserify-pretty', function(done) {
-  return browserify(browserifyInput)
+  browserify(browserifyInput)
+    .transform(babelify)
     .bundle()
+    .on('error', console.error)
     .pipe(source('bundle.js'))
+    .pipe(plumber())
     .pipe(gulp.dest(browserifyOutput));
   done();
 });
 
 gulp.task('icons', function(done) {
-  return gulp.src('./node_modules/@fortawesome/*')
+  gulp.src('./node_modules/@fortawesome/*')
     .pipe(gulp.dest('./dist/assets/libs/@fortawesome/'));
   done();
 });
 
 
 var pugWatcher = gulp.watch(pugFolders, gulp.parallel(['templates']), () => browserSync.reload());
-var sassWatcher = gulp.watch(sassInput, gulp.parallel(['stylesheets']));
+var sassWatcher = gulp.watch(sassInput, gulp.series(['stylesheets','minify-css']));
 var browserifyWatcher = gulp.watch(browserifyFolders, gulp.series(['browserify','browserify-pretty']));
 
 pugWatcher.on('change', function(event) {
@@ -118,7 +141,8 @@ setTimeout(function() {
 if (NODE_ENV != "production") {
   browserSync.init({
     proxy: "localhost:3000",
-    port: 3000
+    port: 3000,
+    open: false
   });
 }
 }, 1000)
