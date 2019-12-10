@@ -3,13 +3,9 @@ if (!process.env.NODE_ENV) {
 }
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
-const fs = require('fs'),
-  gulp = require('gulp'),
+const gulp = require('gulp'),
   sass = require('gulp-sass'),
   pug = require('gulp-pug'),
-  babel = require('gulp-babel'),
-  babelify = require('babelify'),
-  concat = require('gulp-concat'),
   browserify = require('browserify'),
   beautify = require('gulp-beautify'),
   terser = require('gulp-terser'),
@@ -71,10 +67,12 @@ gulp.task('stylesheets', function(done) {
 
 gulp.task('minify-css', function(done) {
   gulp.src(sassOutput+'/style.css')
+    .pipe(sourcemaps.init())
     .pipe(cleanCSS().on('error',console.error))
     .pipe(rename({
       suffix: '.min'
     }).on('error',console.error))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest('./dist/assets/styles/css/'))
     .pipe(NODE_ENV == "production"?noop():browserSync.reload({
       stream: true
@@ -88,8 +86,11 @@ var browserifyInput = './src/js/main.js';
 var browserifyOutput = './dist/assets/js';
 var browserifyFolders = './src/js/**/*.js'
 gulp.task('browserify', function(done) {
-  browserify(browserifyInput)
-    .transform(babelify)
+  browserify(browserifyInput,{debug: NODE_ENV!=="production"})
+    .transform("babelify", {
+      presets: ["@babel/preset-env"],
+      sourceMaps: true
+    })
     .bundle()
     .on('error', console.error)
     .pipe(source('bundle.min.js'))
@@ -101,8 +102,11 @@ gulp.task('browserify', function(done) {
 });
 
 gulp.task('browserify-pretty', function(done) {
-  browserify(browserifyInput)
-    .transform(babelify)
+  browserify(browserifyInput,{debug: NODE_ENV!=="production"})
+    .transform("babelify", {
+      presets: ["@babel/preset-env"],
+      sourceMaps: true
+    })
     .bundle()
     .on('error', console.error)
     .pipe(source('bundle.js'))
@@ -118,7 +122,9 @@ gulp.task('icons', function(done) {
 });
 
 
-var pugWatcher = gulp.watch(pugFolders, gulp.parallel(['templates']), () => browserSync.reload());
+var pugWatcher = gulp.watch(pugFolders, gulp.parallel(['templates']), function() {
+  if (NODE_ENV != "production") browserSync.reload()
+});
 var sassWatcher = gulp.watch(sassInput, gulp.series(['stylesheets','minify-css']));
 var browserifyWatcher = gulp.watch(browserifyFolders, gulp.series(['browserify','browserify-pretty']));
 

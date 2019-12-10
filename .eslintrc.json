@@ -3,15 +3,13 @@
         "browser": true,
         "commonjs": true,
         "es6": true,
-        "mocha": true
+        "mocha": true,
+        "node": true,
+        "jquery": true
     },
     "extends": "eslint:recommended",
     "globals": {
-        "Atomics": "readonly",
-        "SharedArrayBuffer": "readonly",
-        "google": "readonly",
-        "$": "readonly",
-        "jQuery":"readonly"
+        "google": "readonly"
     },
     "parserOptions": {
         "ecmaVersion": 2018
