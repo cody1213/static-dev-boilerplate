@@ -1,15 +1,15 @@
 nav.navbar.navbar-expand-lg.navbar-light.bg-light
-  a.navbar-brand(href='#') Navbar
-  button.navbar-toggler(type='button' data-toggle='collapse' data-target='#navbarSupportedContent' aria-controls='navbarSupportedContent' aria-expanded='false' aria-label='Toggle navigation')
+  a.navbar-brand(href="#") ChartJS Demos
+  button.navbar-toggler(type="button", data-toggle="collapse", data-target="#navbarSupportedContent", aria-controls="navbarSupportedContent", aria-expanded="false", aria-label="Toggle navigation")
     span.navbar-toggler-icon
-  #navbarSupportedContent.collapse.navbar-collapse
+  .collapse.navbar-collapse#navbarSupportedContent
     ul.navbar-nav.mr-auto
       li.nav-item.active
-        a.nav-link(href='/') Home 
+        a.nav-link(href="/") Home 
       li.nav-item.dropdown
-        a#navbarDropdown.nav-link.dropdown-toggle(href="javascript:void(0);" role='button' data-toggle='dropdown' aria-haspopup='true' aria-expanded='false')
+        a.nav-link.dropdown-toggle#navbarDropdown(href="javascript:void(0);", role="button", data-toggle="dropdown", aria-haspopup="true", aria-expanded="false")
           | Basic Templates
-        .dropdown-menu(aria-labelledby='navbarDropdown')
-          a.dropdown-item(href='page.html') Page
-          a.dropdown-item(href='single.html') Single
-          a.dropdown-item(href='error.html') 404 Error
+        .dropdown-menu(aria-labelledby="navbarDropdown")
+          a.dropdown-item(href="page.html") Page
+          a.dropdown-item(href="single.html") Single
+          a.dropdown-item(href="error.html") 404 Error
