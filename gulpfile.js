@@ -83,20 +83,29 @@ gulp.task('minify-css', function(done) {
 var browserifyInput = './src/js/main.js';
 var browserifyOutput = './dist/assets/js';
 var browserifyFolders = './src/js/**/*.js'
-gulp.task('browserify', function(done) {
-  browserify(browserifyInput, { debug: NODE_ENV !== "production" })
-  .transform("babelify", {
-    presets: ["@babel/preset-env"],
-    sourceMaps: true
-  })
-  .bundle()
-  .on('error', console.error)
-  .pipe(source('bundle.min.js'))
-  .pipe(plumber())
-  .pipe(buffer())
-  .pipe(terser())
-  .pipe(gulp.dest(browserifyOutput));
-  done();
+gulp.task('browserify', function() {
+  // we define our input files, which we want to have
+  // bundled:
+  var files = [
+    './app/main.js'
+  ];
+  // map them to our stream function
+  var tasks = files.map(function(entry) {
+    return browserify(browserifyInput, { debug: NODE_ENV !== "production" })
+    .transform("babelify", {
+      presets: ["@babel/preset-env"],
+      sourceMaps: true
+    })
+    .bundle()
+    .on('error', console.error)
+    .pipe(source('bundle.min.js'))
+    .pipe(plumber())
+    .pipe(buffer())
+    .pipe(terser())
+    .pipe(gulp.dest(browserifyOutput));
+  });
+  // create a merged stream
+  return eventStream.merge.apply(null, tasks);
 });
 
 
