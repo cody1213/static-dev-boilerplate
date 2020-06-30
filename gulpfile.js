@@ -4,20 +4,20 @@ if (!process.env.NODE_ENV) {
 const NODE_ENV = process.env.NODE_ENV || 'development';
 
 const gulp = require('gulp'),
-  sass = require('gulp-sass'),
-  pug = require('gulp-pug'),
-  browserify = require('browserify'),
-  beautify = require('gulp-beautify'),
-  terser = require('gulp-terser'),
-  noop = require('gulp-noop'),
-  source = require('vinyl-source-stream'),
-  buffer = require('vinyl-buffer'),
-  sourcemaps = require('gulp-sourcemaps'),
-  autoprefixer = require('gulp-autoprefixer'),
-  plumber = require('gulp-plumber'),
-  cleanCSS = require('gulp-clean-css'),
-  rename = require('gulp-rename'),
-  eventStream = require('event-stream');
+  async = require('async'),
+    sass = require('gulp-sass'),
+    pug = require('gulp-pug'),
+    browserify = require('browserify'),
+    beautify = require('gulp-beautify'),
+    terser = require('gulp-terser'),
+    noop = require('gulp-noop'),
+    source = require('vinyl-source-stream'),
+    buffer = require('vinyl-buffer'),
+    sourcemaps = require('gulp-sourcemaps'),
+    autoprefixer = require('gulp-autoprefixer'),
+    plumber = require('gulp-plumber'),
+    cleanCSS = require('gulp-clean-css'),
+    rename = require('gulp-rename');
 
 if (NODE_ENV != "production") var browserSync = require('browser-sync').create();
 
@@ -80,18 +80,17 @@ gulp.task('minify-css', function(done) {
 });
 
 //compile any JavaScript dependencies installed with npm
-var browserifyInput = './src/js/main.js';
+var browserifyInput = [
+  './src/js/main.js',
+  // './src/js/main-a.js',
+  // './src/js/main-b.js'
+];
 var browserifyOutput = './dist/assets/js';
 var browserifyFolders = './src/js/**/*.js'
-gulp.task('browserify', function() {
-  // we define our input files, which we want to have
-  // bundled:
-  var files = [
-    './app/main.js'
-  ];
-  // map them to our stream function
-  var tasks = files.map(function(entry) {
-    return browserify(browserifyInput, { debug: NODE_ENV !== "production" })
+gulp.task('browserify', function(done) {
+  async.each(browserifyInput, function(file, cb) {
+    var filename = file.split('/').pop();
+    browserify(file, { debug: NODE_ENV !== "production" })
     .transform("babelify", {
       presets: ["@babel/preset-env"],
       sourceMaps: true
@@ -99,15 +98,19 @@ gulp.task('browserify', function() {
     .bundle()
     .on('error', console.error)
     .pipe(source('bundle.min.js'))
-    .pipe(plumber())
+    .pipe(rename(filename))
+    .pipe(gulp.dest(browserifyOutput))
+    .pipe(rename({ extname: '.min.js' }))
     .pipe(buffer())
+    .pipe(sourcemaps.init({ loadMaps: true }))
     .pipe(terser())
+    .on('error', console.error)
+    .pipe(sourcemaps.write('./'))
     .pipe(gulp.dest(browserifyOutput));
-  });
-  // create a merged stream
-  return eventStream.merge.apply(null, tasks);
+    cb();
+  })
+  done();
 });
-
 
 var pugWatcher = gulp.watch(pugFolders, gulp.parallel(['templates']), function() {
   if (NODE_ENV != "production") browserSync.reload()
