@@ -1,19 +1,42 @@
 if typeof page === "undefined"
   - var page = "Home";
-- var title = ""
-- var description = "";
+- var title = "Boilerplate"
+- var description = "Cody's Boilerplate";
+- var url = ""
+- var image = "https://www.datacenterresearch.org/a/wp-content/uploads/2020/08/placing-prosperity-1024x670.png";
 head
   - let pageText = (page?page+" | ":"")+title
   title=pageText
   meta(charset="UTF-8")
   meta(name="viewport", content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
-  meta(name="description", content=description)
-  meta(name="keywords", content=keywords)
-  meta(property="og:title", content=title)
+  meta(name="web_author", content="Cody Brumfield")
+  meta(name="designer", content="Katrina Andry")
+  meta(name="copyright", content="Nonprofit Knowledge Works")
+  meta(property="og:type", content="website")
+  meta(property="og:title", content=pageText)
   meta(property="og:description", content=description)
-  meta(name="twitter:site", content="@craftdc")
-  meta(name="twitter:title", content=title)
+  meta(property="og:url", content=url)
+  meta(property="og:site_name", content="The Data Center")
+  meta(property="og:image", content=image)
+  meta(property="fb:admins", content="1016974801718118")
+  meta(property="og:image:secure_url", content=image)
+  meta(name="twitter:card", content="summary")
+  meta(name="twitter:site", content="@noladatacenter")
+  meta(name="twitter:domain", content="datacenterresearch.org")
+  meta(name="twitter:title", content=pageText)
   meta(name="twitter:description", content=description)
+  meta(name="twitter:image", content=image)
   link(rel="icon shortcut", href="assets/images/favicon.ico")
+
   link(rel="stylesheet", href="assets/styles/css/style.css")
   script(src="https://kit.fontawesome.com/e5dad743f2.js", crossorigin="anonymous")
+  link(rel="stylesheet", href="https://use.typekit.net/kvc1sps.css")
+
+  // Google Tag Manager
+  //- script(async, src="https://www.googletagmanager.com/gtag/js?id=UA-48924023-1")
+  //- script.
+  //-   window.dataLayer = window.dataLayer || [];
+  //-   function gtag(){dataLayer.push(arguments);}
+  //-   gtag("js", new Date());
+
+  //-   gtag("config", "UA-48924023-1");

@@ -1,0 +1,10 @@
+mixin popover(content, title="<i class='fa fa-sticky-note'></i> Note", label="note")
+  a.ref(href="javascript:void(0);", data-toggle="popover", data-html="true", data-trigger="focus", data-title=title, data-content=content)
+    sup &#91;#{label}&#93;
+mixin reference(ref)
+  span.reference(data-reference=ref)
+mixin source(content, label="Source")
+  a.chart-source(href="javascript:void(0);", data-toggle="popover", data-html="true", data-trigger="focus", data-title="<i class='fas fa-info-circle'></i> "+label, data-content=content) 
+    i.fas.fa-info-circle
+mixin linkify(link, text, target="_blank")
+  a(href=link, target=target) #{text || link}

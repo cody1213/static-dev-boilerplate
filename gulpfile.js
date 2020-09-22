@@ -36,7 +36,7 @@ gulp.task('templates', function(done) {
   .pipe(pug().on('error', console.error))
   .pipe(NODE_ENV == "production" ? noop() : beautify.html({
     indent_size: 2,
-    inline: ['abbr', 'area', 'b', 'bdi', 'bdo', 'br', 'button', 'cite', 'code', 'data', 'datalist', 'del', 'dfn', 'em', 'i', 'ins', 'kbd', 'keygen', 'label', 'map', 'mark', 'math', 'meter', 'noscript', 'output', 'progress', 'q', 'ruby', 's', 'samp', 'small', 'span', 'strong', 'sub', 'sup', 'time', 'u', 'var', 'wbr', 'text', 'acronym', 'big', 'strike', 'tt']
+    inline: ['a', 'abbr', 'area', 'b', 'bdi', 'bdo', 'br', 'button', 'cite', 'code', 'data', 'datalist', 'del', 'dfn', 'em', 'i', 'ins', 'kbd', 'keygen', 'label', 'map', 'mark', 'math', 'meter', 'noscript', 'output', 'progress', 'q', 'ruby', 's', 'samp', 'small', 'span', 'strong', 'sub', 'sup', 'time', 'u', 'var', 'wbr', 'text', 'acronym', 'big', 'strike', 'tt']
   }))
   .pipe(gulp.dest(pugOutput))
   .pipe(NODE_ENV == "production" ? noop() : browserSync.stream({
@@ -61,6 +61,9 @@ gulp.task('stylesheets', function(done) {
   .pipe(sourcemaps.write())
   .pipe(autoprefixer())
   .pipe(gulp.dest(sassOutput))
+  .pipe(NODE_ENV == "production" ? noop() : browserSync.reload({
+    stream: true
+  }));
   done()
 });
 
@@ -79,11 +82,9 @@ gulp.task('minify-css', function(done) {
   done();
 });
 
-//compile any JavaScript dependencies installed with npm
+//compile Javascript. Multiple entry files can be added here:
 var browserifyInput = [
   './src/js/main.js',
-  // './src/js/main-a.js',
-  // './src/js/main-b.js'
 ];
 var browserifyOutput = './dist/assets/js';
 var browserifyFolders = './src/js/**/*.js'
