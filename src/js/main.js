@@ -1,3 +1,3 @@
 require('./globals');
 require('./app')
-require('./footnotes');
+// require('./footnotes');
