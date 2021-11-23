@@ -31,8 +31,6 @@
     "cookie-parser": "^1.4.6",
     "event-stream": "^4.0.1",
     "express": "^4.17.1",
-    "jquery": "^3.6.0",
-    "leaflet": "^1.7.1",
     "lodash": "^4.17.21",
     "morgan": "^1.10.0",
     "popper.js": "^1.16.1",

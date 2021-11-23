@@ -1,2 +1,2 @@
 # Footnotes
-This takes a standard BibTex file and creates footnotes. It's a work in progress. For not, add a `.bib` file and run `node footnotes-prepare.js` to create a footnotes JSON file.
+This takes a standard BibTex file and creates footnotes. It's a work in progress. Add a `.bib` file and run `node footnotes-prepare.js` to create a footnotes JSON file. Then include the footnotes in your javascript.
